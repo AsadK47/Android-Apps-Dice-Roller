@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
-import java.util.*
+import java.util.Random
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,8 +16,23 @@ class MainActivity : AppCompatActivity() {
         val dieOne: ImageView = findViewById(R.id.first_die)
         val dieTwo: ImageView = findViewById(R.id.second_die)
 
-        rollButton.setOnClickListener() {
-            val randomNumber = Random().nextInt(6) + 1
+        rollButton.setOnClickListener {
+            dieOne.setImageResource(roller())
+            dieTwo.setImageResource(roller())
+        }
+    }
+
+    fun roller(): Int {
+        val randomNumber = Random().nextInt(6) + 1
+
+        return when (randomNumber) {
+            1 -> R.drawable.dice1
+            2 -> R.drawable.dice2
+            3 -> R.drawable.dice3
+            4 -> R.drawable.dice4
+            5 -> R.drawable.dice5
+            6 -> R.drawable.dice6
+            else -> R.drawable.dice6
         }
     }
 }
